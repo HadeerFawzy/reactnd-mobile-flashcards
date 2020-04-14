@@ -8,6 +8,7 @@ import reducer from './reducers/index';
 import Constants from 'expo-constants';
 import FlashCardsTabs from './navigation/AppNavigator';
 import { green } from './utils/colors';
+import DecksList from './components/DecksList';
 
 const store = createStore( reducer, applyMiddleware(thunk, logger));
 
@@ -28,7 +29,7 @@ export default class App extends React.Component {
             barStyle="light-content"
           />
           <View style={styles.container}>
-            <Text>Test App Text</Text>
+            <DecksList/>
             <FlashCardsTabs/>
           </View>
       </Provider>
