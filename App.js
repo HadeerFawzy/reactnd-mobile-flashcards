@@ -28,10 +28,10 @@ export default class App extends React.Component {
             backgroundColor={green}
             barStyle="light-content"
           />
-          <View style={styles.container}>
+          <FlashCardsTabs/>
+          {/* <View style={styles.container}>
             <DecksList/>
-            <FlashCardsTabs/>
-          </View>
+          </View> */}
       </Provider>
     );
   }
