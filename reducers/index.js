@@ -1,5 +1,5 @@
 
-import { GET_DECKS } from '../actions/index';
+import { GET_DECKS, ADD_DECK } from '../actions/index';
 
 export default function decks(state = {}, action) {
   switch (action.type) {
@@ -7,6 +7,14 @@ export default function decks(state = {}, action) {
       return {
         ...state,
         ...action.decks
+      };
+    case ADD_DECK:
+      return {
+        ...state,
+        [action]: {
+          action,
+          questions: []
+        }
       };
     default:
       return state;

@@ -22,3 +22,14 @@ export async function getDecks() {
   }
   return storeResults === null ? decks : JSON.parse(storeResults);
 }
+
+export async function addNewDeck(title) {
+  await AsyncStorage.mergeItem( DECKS_STORAGE_KEY,
+    JSON.stringify({
+      [title]: {
+        title,
+        questions: []
+      }
+    })
+  );
+}

@@ -9,6 +9,13 @@ export function getDecksList(decks) {
   };
 }
 
+export function addDeck(title) {
+  return {
+    type: ADD_DECK,
+    title
+  };
+}
+
 export function handleInitialData() {
   return dispatch => {
     return getDecks().then(decks => {
