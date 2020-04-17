@@ -7,6 +7,7 @@ import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DecksList from '../components/DecksList';
 import AddDeck from '../components/AddDeck';
+import DeckCard from '../components/DeckCard';
 import AddCard from '../components/AddCard';
 import { green, grey } from '../utils/colors';
 
@@ -19,6 +20,7 @@ function DecksListStackScreen() {
   return (
     <Stack.Navigator initialRouteName="DecksList">
       <Stack.Screen name="DecksList" component={DecksList} options={{ title: 'Decks' }}/>
+      <Stack.Screen name="DeckCard" component={DeckCard} options={{ title: 'Decks' }}/>
     </Stack.Navigator>
    );
 }

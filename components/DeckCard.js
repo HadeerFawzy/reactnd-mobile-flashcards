@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import { connect } from 'react-redux';
 
-export default function DeckCard() {
+export class DeckCard extends Component {
+ render() {
+  
   return (
     <View>
-      <Text>Add Deck!</Text>
+      <Text>{this.props.deck.title}</Text>
     </View>
   );
+ }
 }
+
+const mapStateToProps = (state, { route }) => {
+  const title = route.params.title || undefined;
+  const deck = state[title];
+  return {
+    deck
+  };
+};
+export default connect(mapStateToProps)(DeckCard);

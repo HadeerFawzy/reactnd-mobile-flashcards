@@ -24,7 +24,9 @@ export class DecksList extends Component {
           return (
             <TouchableOpacity key={`${index}title`}
                               onPress={() =>
-                                navigation.navigate('DeckDetail', { title: deck.title })
+                                this.props.navigation.navigate('DeckCard', { 
+                                  title: deck.title 
+                                })
                               }>
             <View style={styles.cardWrap} key={`${index}title`}>
               <Text style={[styles.deckText, {fontWeight: 'bold'}]}>
