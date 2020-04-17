@@ -17,7 +17,10 @@ export class AddDeck extends Component {
 
   handleSubmit = () => {
     this.props.addDeck(this.state.name);
-    addNewDeck(this.state.name)
+    addNewDeck(this.state.name);
+    this.props.navigation.navigate('DeckCard', { 
+      title: this.state.name
+    })
   }
 
   render() {

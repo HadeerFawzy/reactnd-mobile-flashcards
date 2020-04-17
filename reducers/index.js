@@ -9,7 +9,7 @@ export default function decks(state = {}, action) {
         ...action.decks
       };
     case ADD_DECK:
-      const title = action
+      const title = action.title
       return {
         ...state,
         [title]: {
