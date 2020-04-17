@@ -9,10 +9,11 @@ export default function decks(state = {}, action) {
         ...action.decks
       };
     case ADD_DECK:
+      const title = action
       return {
         ...state,
-        [action]: {
-          action,
+        [title]: {
+          title,
           questions: []
         }
       };

@@ -9,7 +9,7 @@ import {
 import { handleInitialData } from '../actions/index';
 import { connect } from 'react-redux';
 import DeckCard from './DeckCard';
-import { white, green, red } from '../utils/colors';
+import { white, green, red, grey } from '../utils/colors';
 
 export class DecksList extends Component {
   componentDidMount() {
@@ -20,17 +20,20 @@ export class DecksList extends Component {
     return (
       <ScrollView style={styles.decksWrap}>
         <Text style={styles.title}>Mobile Flashcards</Text>
-        {Object.values(this.props.decks).map(deck => {
+        {Object.values(this.props.decks).map((deck, index) => {
           return (
-            <TouchableOpacity
-              key={deck.title}
-              onPress={() =>
-                navigation.navigate('DeckDetail', { title: deck.title })
-              }
-            >
-              <Text>
+            <TouchableOpacity key={`${index}title`}
+                              onPress={() =>
+                                navigation.navigate('DeckDetail', { title: deck.title })
+                              }>
+            <View style={styles.cardWrap} key={`${index}title`}>
+              <Text style={[styles.deckText, {fontWeight: 'bold'}]}>
                 {deck.title}
               </Text>
+              <Text style={styles.deckText}>
+                {deck.questions.length}
+              </Text>
+            </View>    
             </TouchableOpacity>
           );
         })}
@@ -45,15 +48,6 @@ const mapStateToProps = state => ({ decks: state });
 
 export default connect( mapStateToProps, { handleInitialData } )(DecksList);
 
-// function mapStateToProps ({ decks }) {
-//   return {
-//     decks
-//   }
-// }
-
-// export default connect(mapStateToPropsn, { handleInitialData })(DecksList)
-
-
 const styles = StyleSheet.create({
   decksWrap: {
     flex: 1,
@@ -66,10 +60,18 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     color: green
   },
-  deckTitle: {
-    fontSize: 32,
+  cardWrap: {
+    padding: 16,
     textAlign: 'center',
     marginBottom: 16,
-    color: green
+    borderColor: grey,
+    borderWidth: 1,
+    borderRadius: 4
+  },
+  deckText: {
+    fontSize: 32,
+    textAlign: 'center',
+    marginBottom: 8,
+    color: grey
   }
 });

@@ -1,6 +1,7 @@
 import { getDecks } from '../utils/api';
 
 export const GET_DECKS = 'GET_DECKS';
+export const ADD_DECK = 'ADD_DECK';
 
 export function getDecksList(decks) {
   return {
