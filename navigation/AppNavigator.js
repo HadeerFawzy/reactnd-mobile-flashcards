@@ -8,7 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 import DecksList from '../components/DecksList';
 import AddDeck from '../components/AddDeck';
 import DeckCard from '../components/DeckCard';
-import AddCard from '../components/AddCard';
+import AddQuestion from '../components/AddQuestion';
+import StartQuiz from '../components/StartQuiz';
 import { green, grey } from '../utils/colors';
 
 const isIOS = Platform.OS === 'ios' ? true : false;
@@ -20,7 +21,9 @@ function DecksListStackScreen() {
   return (
     <Stack.Navigator initialRouteName="DecksList">
       <Stack.Screen name="DecksList" component={DecksList} options={{ title: 'Decks' }}/>
-      <Stack.Screen name="DeckCard" component={DeckCard} options={{ title: 'Decks' }}/>
+      <Stack.Screen name="DeckCard" component={DeckCard} options={{ title: 'Deck Details' }}/>
+      <Stack.Screen name="AddQuestion" component={AddQuestion} options={{ title: 'Add Question' }}/>
+      <Stack.Screen name="StartQuiz" component={StartQuiz} options={{ title: 'Start Quiz' }}/>
     </Stack.Navigator>
    );
 }
