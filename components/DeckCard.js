@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { white, green, red, grey } from '../utils/colors';
 import { Ionicons } from '@expo/vector-icons';
+import { ceil } from 'react-native-reanimated';
 
 export class DeckCard extends Component {
  render() {
-  
+  const disabled = (this.props.deck.questions.length === 0) ? true : false
   return (
     <View style={styles.wrapper}>
       <Text style={styles.text}>
@@ -25,15 +26,22 @@ export class DeckCard extends Component {
             style={{marginRight: 16}}/>Add Question
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn}
-          onPress={() =>
-            this.props.navigation.navigate('StartQuiz', { title: this.props.deck.title })
-          }>
-          <Text style={styles.btnText}>
-          <Ionicons name='ios-help-circle-outline' size={16} color={white} 
-            style={{marginRight: 16}}/>Start Quiz
-          </Text>
-        </TouchableOpacity>
+        { !disabled &&
+          <TouchableOpacity style={[styles.btn]}
+            onPress={() => this.props.navigation.navigate('StartQuiz', { 
+              title: this.props.deck.title,
+             })}>
+            <Text style={styles.btnText}>
+            <Ionicons name='ios-help-circle-outline' size={16} color={white} 
+              style={{marginRight: 16}}/>Start Quiz
+            </Text>
+          </TouchableOpacity>
+        }
+        { disabled &&
+          <Text style={{color: red, fontSize: 16, textAlign: 'center'}}>
+            You can't take this quiz, cause there are no Questions!
+         </Text>
+        }
       </View>
     </View>
   );
@@ -59,7 +67,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 32,
     textAlign: 'center',
-    color: green
+    color: '#000'
   },
   questionsText: {
     fontSize: 24,

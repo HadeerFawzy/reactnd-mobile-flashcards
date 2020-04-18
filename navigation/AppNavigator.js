@@ -23,7 +23,8 @@ function DecksListStackScreen() {
       <Stack.Screen name="DecksList" component={DecksList} options={{ title: 'Decks' }}/>
       <Stack.Screen name="DeckCard" component={DeckCard} options={{ title: 'Deck Details' }}/>
       <Stack.Screen name="AddQuestion" component={AddQuestion} options={{ title: 'Add Question' }}/>
-      <Stack.Screen name="StartQuiz" component={StartQuiz} options={{ title: 'Start Quiz' }}/>
+      <Stack.Screen name="StartQuiz" component={StartQuiz} 
+                    options={({ route }) => ({ title: route.params.title + " Quiz" })}/>
     </Stack.Navigator>
    );
 }
