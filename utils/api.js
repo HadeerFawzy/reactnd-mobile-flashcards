@@ -7,14 +7,6 @@ export function getData() {
   return decks;
 }
 
-function formatDeckResults(results) {
-  return results === null ? decks : JSON.parse(results);
-}
-
-export function getOldDecks() {
-  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(formatDeckResults);
-}
-
 export async function getDecks() {
   const storeResults = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
   if (storeResults === null) {
@@ -32,4 +24,12 @@ export async function addNewDeck(title) {
       }
     })
   );
+}
+
+export async function removeDeckAPI(key) {
+    const results = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+    const decks = JSON.parse(results);
+    decks[key] = undefined;
+    delete decks[key];
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
 }

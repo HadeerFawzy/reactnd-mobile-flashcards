@@ -6,17 +6,22 @@ import {
   TouchableOpacity,
   StyleSheet
 } from 'react-native';
-import { handleInitialData } from '../actions/index';
+import { handleInitialData, removeDeckAction } from '../actions/index';
 import { connect } from 'react-redux';
 import DeckCard from './DeckCard';
+import { removeDeckAPI } from '../utils/api';
 import { white, green, red, grey } from '../utils/colors';
+import { Ionicons } from '@expo/vector-icons';
 
 export class DecksList extends Component {
   componentDidMount() {
     this.props.handleInitialData();
   }
+  handleRemove = title => {
+    this.props.removeDeckAction(title);
+    removeDeckAPI(title);
+  };
   render() {
-
     return (
       <ScrollView style={styles.decksWrap}>
         <Text style={styles.title}>Mobile Flashcards</Text>
@@ -35,6 +40,9 @@ export class DecksList extends Component {
               <Text style={styles.deckText}>
                 {deck.questions.length}
               </Text>
+              <TouchableOpacity onPress={() => this.handleRemove(deck.title)}>
+                <Ionicons name='ios-trash' size={32} color={red}/>
+              </TouchableOpacity>
             </View>    
             </TouchableOpacity>
           );
@@ -46,9 +54,11 @@ export class DecksList extends Component {
 }
 
 
-const mapStateToProps = state => ({ decks: state });
+const mapStateToProps = state => ({ 
+  decks: state 
+});
 
-export default connect( mapStateToProps, { handleInitialData } )(DecksList);
+export default connect( mapStateToProps, { handleInitialData, removeDeckAction } )(DecksList);
 
 const styles = StyleSheet.create({
   decksWrap: {

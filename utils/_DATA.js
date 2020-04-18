@@ -23,7 +23,7 @@ export const decks = {
     ]
   },
   CSS: {
-    title: 'css',
+    title: 'CSS',
     questions: [
       {
         question: 'What is css?',
