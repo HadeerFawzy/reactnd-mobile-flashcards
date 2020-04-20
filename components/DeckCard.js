@@ -23,7 +23,7 @@ export class DeckCard extends Component {
           }>
           <Text style={styles.btnText}>
             <Ionicons name='ios-add-circle-outline' size={16} color={white} 
-            style={{marginRight: 16}}/>Add Question
+            style={{marginRight: 16}}/> Add Question
           </Text>
         </TouchableOpacity>
         { !disabled &&
@@ -33,7 +33,7 @@ export class DeckCard extends Component {
              })}>
             <Text style={styles.btnText}>
             <Ionicons name='ios-help-circle-outline' size={16} color={white} 
-              style={{marginRight: 16}}/>Start Quiz
+              style={{marginRight: 16}}/> Start Quiz
             </Text>
           </TouchableOpacity>
         }
