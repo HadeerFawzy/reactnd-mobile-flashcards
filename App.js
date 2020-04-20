@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -8,7 +8,7 @@ import reducer from './reducers/index';
 import Constants from 'expo-constants';
 import FlashCardsTabs from './navigation/AppNavigator';
 import { green } from './utils/colors';
-import DecksList from './components/DecksList';
+import { setLocalNotification } from './utils/helpers';
 
 const store = createStore( reducer, applyMiddleware(thunk, logger));
 
@@ -21,6 +21,9 @@ function FlashCardStatusBar({ backgroundColor, ...props }) {
 }
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={store}>
@@ -29,19 +32,7 @@ export default class App extends React.Component {
             barStyle="light-content"
           />
           <FlashCardsTabs/>
-          {/* <View style={styles.container}>
-            <DecksList/>
-          </View> */}
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

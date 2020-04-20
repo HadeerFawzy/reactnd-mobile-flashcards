@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { white, green, red, grey } from '../utils/colors';
 import { Ionicons } from '@expo/vector-icons';
+import { setLocalNotification, clearLocalNotification } from '../utils/helpers';
 
 
 const WindowWidth = Dimensions.get('window').width;
 
 class StartQuiz extends Component{
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification);
+  }
+
   state = {
     toggleView: 'question',
     currentQIndex: 0,
