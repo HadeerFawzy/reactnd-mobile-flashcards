@@ -33,3 +33,14 @@ export async function removeDeckAPI(key) {
     delete decks[key];
     AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
 }
+
+export async function addQuestionAPI(title, question) {
+  const deck = await getDeck(title);
+  await AsyncStorage.mergeItem( DECKS_STORAGE_KEY,
+    JSON.stringify({
+      [title]: {
+        questions: [...deck.questions].concat(question)
+      }
+    })
+  );
+}

@@ -1,5 +1,5 @@
 
-import { GET_DECKS, ADD_DECK, REMOVE_DECK } from '../actions/index';
+import { GET_DECKS, ADD_DECK, REMOVE_DECK, ADD_QUESTION } from '../actions/index';
 
 export default function decks(state = {}, action) {
   switch (action.type) {
@@ -22,6 +22,18 @@ export default function decks(state = {}, action) {
       return {
         ...state
       }; 
+    case ADD_QUESTION:
+      console.log(action)
+      const Qtitle = action.title;
+      const question = action.question
+      console.log(Qtitle, question)
+      return {
+        ...state,
+        [Qtitle]: {
+          ...state[Qtitle],
+          questions: [...state[Qtitle].questions].concat(question)
+        }
+      };  
     default:
       return state;
   }
